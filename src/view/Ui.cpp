@@ -58,7 +58,7 @@ void Ui::addValue() {
 	int value = ask("\nDigite o elemento a ser empilhado");
 	int ans = _stack.add(value);
 
-	if(ans == Stack::ERROR_FULL) {
+	if(ans == StackBase::ERROR_FULL) {
 		cout << "\nErro: pilha cheia!" << endl;
 	} else {
 		cout << "\nValor empilhado corretamente!" << endl;
@@ -70,7 +70,7 @@ void Ui::remove() {
 	int ans = _stack.remove();
 
 
-	if(ans == Stack::ERROR_EMPTY) {
+	if(ans == StackBase::ERROR_EMPTY) {
 		cout << "\nErro: pilha vazia!" << endl;
 	} else {
 		cout << "\nValor desempilhado: " << ans << endl;
@@ -92,7 +92,7 @@ void Ui::showStackValues() {
 
 	cout << "\nPosição     Valor" << endl;
 
-	for(int i = 0; i < _stack.getTop() + 1; i++) {
+	for(int i = 0; i < _stack.getTopIndex() + 1; i++) {
 	    printf("%d%14d\n", (i + 1), data[i]);
     }
 }

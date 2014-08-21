@@ -1,31 +1,39 @@
-/*
- * List.h
- *
- *  Created on: 17/08/2014
- *      Author: Raphael
- */
-
 #ifndef STACK_H_
 #define STACK_H_
 
-class Stack {
-	public:
-		static const int MAX_SIZE = 3, ERROR_FULL = -1, ERROR_EMPTY = -2;
+#include "StackBase.h"
 
+template <typename T> class Stack : public StackBase {
+	public:
+
+		/**
+		 * Instancia uma pilha com 5 posições
+		 */
 		Stack();
+
+		/**
+		 * Instancia uma pilha com tamanho especificado
+		 * @param int Tamanho da pilha
+		 */
+		Stack(const int);
+
+		/**
+		 *
+		 */
 		virtual ~Stack();
 
 		/**
 		 * Adiciona o valor especificado no topo da Pilha
+		 * @param Valor a ser adicionado
 		 * @return Novo tamanho da Pilha
 		 */
-		int add(int);
+		int add(T);
 
 		/**
 		 * Remove o dado no topo da Pilha
 		 * @return Valor removido
 		 */
-		int remove();
+		T remove();
 
 		/**
 		 * Indica se a pilha está cheia
@@ -42,17 +50,28 @@ class Stack {
 		 */
 		void initStack();
 
-		const int* getData() const {
+		const T* getData() const {
 			return _data;
 		}
 
-		int getTop() const {
+		/**
+		 * @return A posição do topo da pilha
+		 */
+		int getTopIndex() const {
 			return _top;
 		}
 
 	private:
+
+		/**
+		 * Posição do topo da pilha
+		 */
 		int _top;
-		int _data[MAX_SIZE];
+
+		/**
+		 * Vetor com os dados da pilha
+		 */
+		T *_data;
 };
 
 #endif /* STACK_H_ */

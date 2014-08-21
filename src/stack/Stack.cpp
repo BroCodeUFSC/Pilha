@@ -7,25 +7,39 @@
 
 #include "Stack.h"
 
-Stack::Stack() {
+template <class T>
+Stack<T>::Stack() {
+		MAX_SIZE = 5;
+		_data = new T[5];
+		_top = -1;
+}
+
+template <class T>
+Stack<T>::Stack(const int maxSize) {
+	MAX_SIZE = maxSize;
+	_data = new T[maxSize];
 	_top = -1;
 }
 
-Stack::~Stack() {
+template <class T>
+Stack<T>::~Stack() {
 	delete &_top;
 	delete[] &_data;
 }
 
 
-void Stack::initStack() {
+template <class T>
+void Stack<T>::initStack() {
 	for(int i = _top - 1; i >= 0; i--) {
-	    _data[i] = 0;
+	    delete _data[i];
+		_data[i] = new T;
     }
 
 	_top = -1;
 }
 
-int Stack::add(int value) {
+template <class T>
+int Stack<T>::add(T const value) {
 	if(isFull()) {
 		return ERROR_FULL;
 	}
@@ -37,7 +51,8 @@ int Stack::add(int value) {
 	return _top + 1;
 }
 
-int Stack::remove() {
+template <class T>
+T Stack<T>::remove() {
 	if(isEmpty()) {
 		return ERROR_EMPTY;
 	}
@@ -47,10 +62,12 @@ int Stack::remove() {
 	return _data[_top + 1];
 }
 
-bool Stack::isFull() {
+template <class T>
+bool Stack<T>::isFull() {
 	return _top == (MAX_SIZE - 1);
 }
 
-bool Stack::isEmpty() {
+template <class T>
+bool Stack<T>::isEmpty() {
 	return _top == -1;
 }

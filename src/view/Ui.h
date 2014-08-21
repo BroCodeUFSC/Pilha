@@ -58,7 +58,7 @@ class Ui {
 		int ask(const char*);
 
 	private:
-		Stack _stack;
+		Stack<int> _stack;
 };
 
 #endif /* UI_H_ */
